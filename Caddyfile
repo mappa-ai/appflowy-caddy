@@ -195,33 +195,33 @@
 		}
 	}
 
-	# Admin Frontend
-	# handle {
-	# 	# import cors_headers
-
-	# 	reverse_proxy {
-	# 		dynamic a {
-	# 			name {$ENV_ADMIN_FRONTEND}
-	# 			port {$ENV_ADMIN_FRONTEND_PORT}
-	# 			refresh 1s
-	# 			dial_timeout 30s
-	# 			versions ipv4 ipv6
-	# 		}
-	# 		header_up X-Scheme {scheme}
-	# 		header_up Host {host}
-	# 	}
-	# }
-
-	# Web App Hosted on railway
+	#Admin Frontend
 	handle {
+		# import cors_headers
+
 		reverse_proxy {
 			dynamic a {
-				name {$ENV_FRONTEND}
-				port {$ENV_FRONTEND_PORT}
+				name {$ENV_ADMIN_FRONTEND}
+				port {$ENV_ADMIN_FRONTEND_PORT}
 				refresh 1s
 				dial_timeout 30s
 				versions ipv4 ipv6
 			}
+			header_up X-Scheme {scheme}
+			header_up Host {host}
 		}
 	}
+
+	# Web App Hosted on railway
+	# handle {
+	# 	reverse_proxy {
+	# 		dynamic a {
+	# 			name {$ENV_FRONTEND}
+	# 			port {$ENV_FRONTEND_PORT}
+	# 			refresh 1s
+	# 			dial_timeout 30s
+	# 			versions ipv4 ipv6
+	# 		}
+	# 	}
+	# }
 }
